@@ -63,7 +63,7 @@ const locations = [
     "button text": ["Attack","Dodge","Run"],
     "button functions": [attack,dodge,goTown],
     text: "You are fighting a monster."
-  }
+  },
   { name: "kill monster","button text":["Go to town square","Go to town square","Go to town square"],"button functions":[goTown, goTown, goTown],text: 'The monster screams "Arg!" as it dies. You gain experience points and find gold.'}
 ];
 
@@ -164,7 +164,7 @@ function goFight (){
 function attack() {
   text.innerText = "The "+ monsters[fighting].name +" attacks.";
   text.innerText += " You attack it with your " + weapons[currentWeaponIndex].name + "."
-  health -= monsters[fighting].level;
+  health -= getMonsterAttackValue(monsters[fighting].level);
   monsterHealth -= weapons[currentWeaponIndex].power + Math.floor(Math.random() * xp);
 healthText.innerText = health;
 monsterHealthText.innerText = monsterHealth;
@@ -173,6 +173,10 @@ if ( health <= 0){
 } else if (monsterHealth <=0 ){
   defeatMonster()
 }
+}
+
+function getMonsterAttackValue(level) {
+
 }
 
 function dodge() {
