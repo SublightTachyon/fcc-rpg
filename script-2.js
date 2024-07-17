@@ -171,12 +171,18 @@ monsterHealthText.innerText = monsterHealth;
 if ( health <= 0){
   lose() 
 } else if (monsterHealth <=0 ){
-  defeatMonster()
+  if (fighting === 2) {
+    winGame();
+  } else {
+    defeatMonster();
+  }
 }
 }
 
 function getMonsterAttackValue(level) {
   const hit = (level * 5) - (Math.floor(Math.random() * xp));
+console.log(hit);
+return hit > 0 ? hit : 0;
 }
 
 function dodge() {
