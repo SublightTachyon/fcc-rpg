@@ -64,7 +64,14 @@ const locations = [
     "button functions": [attack,dodge,goTown],
     text: "You are fighting a monster."
   },
-  { name: "kill monster","button text":["Go to town square","Go to town square","Go to town square"],"button functions":[goTown, goTown, goTown],text: 'The monster screams "Arg!" as it dies. You gain experience points and find gold.'}
+  { name: "kill monster","button text":["Go to town square","Go to town square","Go to town square"],"button functions":[goTown, goTown, goTown],text: 'The monster screams "Arg!" as it dies. You gain experience points and find gold.'},
+  {
+    name: "easter egg",
+    "button text":["2","8",'Go to town square'],
+    "button functions":[pickTwo,pickEight,goTown],
+    text: 'You find a secret game. Pick a number above. Ten numbers will be randomly chosen between 0 and 10. If the number you choose matches one of the random numbers, you win!'
+  }
+
 ];
 
 // initialize buttons
@@ -169,6 +176,7 @@ function attack() {
   monsterHealth -= weapons[currentWeaponIndex].power + Math.floor(Math.random() * xp);
   } else {
     text.innerText += " You miss the attack.";
+    currentWeaponIndex-- ;
   }
   healthText.innerText = health;
 monsterHealthText.innerText = monsterHealth;
@@ -181,7 +189,7 @@ if ( health <= 0){
     defeatMonster();
   }
 }
-  if (Math.random() <= .1){
+  if (Math.random() <= .1 && inventory.length !== 1){
     text.innerText += " Your " + inventory.pop()+" breaks."
     return inventory.pop();
   }
@@ -223,3 +231,15 @@ function restart() {
   xpText.innerText=xp;
   goTown()
 }
+
+function easterEgg() {
+  update(locations[7])
+}
+
+function pickTwo() {
+  pickTwo(2)
+}
+function pickEight(){
+  pick(8)
+}
+
