@@ -64,7 +64,11 @@ const locations = [
     "button functions": [attack,dodge,goTown],
     text: "You are fighting a monster."
   },
-  { name: "kill monster","button text":["Go to town square","Go to town square","Go to town square"],"button functions":[goTown, goTown, goTown],text: 'The monster screams "Arg!" as it dies. You gain experience points and find gold.'},
+  { 
+    name: "kill monster",
+    "button text":["Go to town square","Go to town square","Go to town square"],
+    "button functions":[goTown, goTown, easterEgg],
+    text: 'The monster screams "Arg!" as it dies. You gain experience points and find gold.'},
   {
     name: "easter egg",
     "button text":["2","8",'Go to town square'],
@@ -250,5 +254,16 @@ function pick(guess) {
   }
   text.innerText = "You picked "+ guess +". Here are the random numbers: \n"
   for (let i = 0;  i< 10; i++) {
-    text.innerText += numbers[i]  }
+    text.innerText += numbers[i] + '\n'  }
+} if (numbers.includes(guess)){
+  text.innerText += "Right! you win 20 gold!";
+  gold += 20;
+  goldText.innerText = gold;
+} else {
+  text.innerText += "Wrong! You lose 10 health!";
+  health -= 10;
+  healthText.innerText = health;
+  if (health <= 0) {
+    lose()
+  }
 }
